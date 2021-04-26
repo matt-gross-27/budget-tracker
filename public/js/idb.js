@@ -52,23 +52,4 @@ function postRecords() {
   }
 }
 
-
-function getIDBData() {
-  const transaction = db.transaction(['lineItems'], 'readwrite');
-  const budgetObjectStore = transaction.objectStore('lineItems');
-  const getRecords = budgetObjectStore.getAll();
-
-  getRecords.onsuccess = () => {
-    if (getRecords.result.length > 0) {
-      return getRecords.result;
-    }
-  }
-
-  getRecords.onerror = () => {
-    return [];
-  }
-};
-
-
-
 window.addEventListener('online', postRecords);

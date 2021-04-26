@@ -1,11 +1,5 @@
 let transactions = [];
 let myChart;
-let records = getIDBData();
-let localTransactions = [];
-
-if (localRecords.length > 0) {
-  localTransactions = records;
-}
 
 fetch("/api/transaction")
   .then(response => {
@@ -13,7 +7,7 @@ fetch("/api/transaction")
   })
   .then(data => {
     // save db data on global variable
-    transactions = [...data, ...localTransactions];
+    transactions = data;
 
     populateTotal();
     populateTable();
