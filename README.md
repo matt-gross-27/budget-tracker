@@ -1,56 +1,38 @@
-# budget-tracker
+# [Budget Tracker](https://budget-tracker-3001.herokuapp.com/)
 
-AS AN avid traveler
+<div style="position: absolute; top: 22px; right: 50px">
 
-I WANT to be able to track my withdrawals and deposits with or without a data/internet connection
+![licence: MIT](https://img.shields.io/badge/license-MIT-blue)
+</div>
 
-SO THAT my account balance is accurate when I am traveling 
+## Description
+Budget tracker is a progressive web application for tracking your personal finances on the go. It has a simple, easy-to-use design and can be downloaded to your phone for a native app-like experience. 
 
-
-GIVEN a budget tracker without an internet connection
-
-WHEN the user inputs an expense or deposit
-THEN they will receive a notification that they have added an expense or deposit
-
-WHEN the user reestablishes an internet connection
-THEN the deposits or expenses added while they were offline are added to their transaction history and their totals are updated
+If you travel a lot, then you know how frustrating bad network connection can be. Budget tracker allows you to have access to your ledger offline, and saves your line items to be uploaded to the cloud as soon as you get back to service.
 
 
-NOTES
-```
-App must
-- include a service worker.
-- include a web manifest.
-- use IndexedDB for offline functionality.
-- be deployed to Heroku.
-```
+## Table of Contents
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Questions](#questions)
+  - [License](#license)
 
-1. IndexedDB to add offline functionality
-  - add idb.js file to the public/js/
+## Installation
+- On Mobile, touch the share icon on your phone's browser. Select add to home screen. Select Add
+- On Chrome Desktop, click the download button to the right of the address bar
 
-  - Review Module 18: NoSQL, Lesson 4: Add Offline Persistence with IndexedDB
+## Usage
+- Enter a transaction memo and amount
+- Click add of subtract
+- Visualize your finances as a table and graph
 
-2. Add a service worker to the root of the public/
+## Questions
+Feel free to reach out with any question about service workers, manifest.json files, or indexedDb
 
-  - Review Module 19: Progressive Web Applications (PWA), Lesson 4: Using Service Workers
+### Contact information:
+- GitHub: [matt-gross-27](https://www.github.com/matt-gross-27)
+- Email: [mbgross111@gmail.com](mailto:mbgross111@gmail.com)
 
-AFTER ONE AND TWO...
-
-- enter deposits offline.
-
-- enter expenses offline.
-
-- Offline entries should be added to the tracker when the application is brought back online.
-
-3. Add Manifest.json to the root of the public/
-  - This manifest.json file for this project will contain the following properties:
-    - name
-    - short_name
-    - icons
-    - theme_color
-    - background_color
-    - start_url
-    - display
-
-4. Deployment to Heroku Using MongoDB Atlas
- - See 18.5.5: Deploy to Heroku.
+## License
+- MIT
