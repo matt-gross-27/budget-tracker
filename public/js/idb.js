@@ -31,8 +31,8 @@ function postRecords() {
 
   getRecords.onsuccess = () => {
     if (getRecords.result.length > 0) {
-      console.log('records to upload')
       fetch('/api/transaction/bulk', {
+        method: 'POST',
         body: JSON.stringify(getRecords.result),
         headers: {
           Accept: 'application/json, text/plain, */*',
