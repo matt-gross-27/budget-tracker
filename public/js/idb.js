@@ -4,7 +4,7 @@ const req = indexedDB.open('budget-tracker', 1);
 
 req.onupgradeneeded = e => {
   const db = e.target.result;
-  db.createObjectStore('new_record', { autoIncrement: true });
+  db.createObjectStore('lineItems', { autoIncrement: true });
 };
 
 req.onsuccess = e => {
@@ -16,24 +16,14 @@ req.onerror = e => {
 };
 
 function storeRecord(record) {
-  const idbTransaction = db.transaction(['new_record'], 'readwrite');
-  const budgetObjectStore = idbTransaction.objectStore('new_record');
+  const transaction = db.transaction(['lineItems'], 'readwrite');
+  const budgetObjectStore = transaction.objectStore('lineItems');
   budgetObjectStore.add(record);
 }
 
-function returnRecords() {
-  const idbTransaction = db.transaction(['new_record'], 'readwrite');
-  const budgetObjectStore = idbTransaction.objectStore('new_record');
-  const getRecords = budgetObjectStore.getAll();
-
-  return getRecords.onsuccess = () => {
-    return getRecords.result
-  }
-}
-
 function postRecords() {
-  const idbTransaction = db.transaction(['new_record'], 'readwrite');
-  const budgetObjectStore = idbTransaction.objectStore('new_record');
+  const transaction = db.transaction(['lineItems'], 'readwrite');
+  const budgetObjectStore = transaction.objectStore('lineItems');
   const getRecords = budgetObjectStore.getAll();
 
   getRecords.onsuccess = () => {
@@ -51,8 +41,8 @@ function postRecords() {
             throw new Error(serverResponse);
           }
           
-          const idbTransaction = db.transaction(['new_record'], 'readwrite');
-          const budgetObjectStore = idbTransaction.objectStore('new_record');
+          const transaction = db.transaction(['lineItems'], 'readwrite');
+          const budgetObjectStore = transaction.objectStore('lineItems');
           budgetObjectStore.clear();
 
           console.log('uploaded offline transactions');
@@ -61,5 +51,24 @@ function postRecords() {
     }
   }
 }
+
+
+function getIDBData() {
+  const transaction = db.transaction(['lineItems'], 'readwrite');
+  const budgetObjectStore = transaction.objectStore('lineItems');
+  const getRecords = budgetObjectStore.getAll();
+
+  getRecords.onsuccess = () => {
+    if (getRecords.result.length > 0) {
+      return getRecords.result;
+    }
+  }
+
+  getRecords.onerror = () => {
+    return [];
+  }
+};
+
+
 
 window.addEventListener('online', postRecords);

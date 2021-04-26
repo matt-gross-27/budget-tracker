@@ -1,6 +1,6 @@
 let transactions = [];
 let myChart;
-let records = returnRecords();
+let records = getIDBData();
 let localTransactions = [];
 
 if (localRecords.length > 0) {
