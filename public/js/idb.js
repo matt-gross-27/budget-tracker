@@ -9,6 +9,9 @@ req.onupgradeneeded = e => {
 
 req.onsuccess = e => {
   db = e.target.result;
+  if (navigator.onLine) {
+    postRecords();
+  }
 };
 
 req.onerror = e => {
@@ -28,6 +31,7 @@ function postRecords() {
 
   getRecords.onsuccess = () => {
     if (getRecords.result.length > 0) {
+      console.log('records to upload')
       fetch('/api/transaction/bulk', {
         body: JSON.stringify(getRecords.result),
         headers: {
