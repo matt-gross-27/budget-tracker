@@ -49,32 +49,32 @@ self.addEventListener('activate', e => {
 
 // Intercept Network Requests
 self.addEventListener('fetch', e => {
-  if (e.req.url.includes('/api/')) {
+  if (e.request.url.includes('/api/')) {
     caches
       .open(DATA_CACHE_NAME)
       .then(cache => {
-        return fetch(e.req)
+        return fetch(e.request)
           .then(res => {
             // if good res, clone it and store in cache
             if (res.status === 200) {
-              cache.put(e.req.url, res.clone());
+              cache.put(e.request.url, res.clone());
             }
             return res;
           })
           .catch(err => {
             // Network req failed, try to get it from cache
-            return cache.match(e.req);
+            return cache.match(e.request);
           });
       })
       .catch(err => console.log(err))
   }
 
   e.respondWith(
-    fetch(e.req).catch(() => {
-      return caches.match(e.req).then(res => {
+    fetch(e.request).catch(() => {
+      return caches.match(e.request).then(res => {
         if (res) {
           return res;
-        } else if (e.req.headers.get('accept').includes('text/html')) {
+        } else if (e.request.headers.get('accept').includes('text/html')) {
           // return the cached home page for all requests for html pages
           return caches.match('/');
         }
