@@ -56,4 +56,21 @@ function postRecords() {
   }
 }
 
-window.addEventListener('online', postRecords);
+function updateTransactions() {
+  indexedDB.open("budget-tracker").onsuccess = e => {
+    const idbTx = db.transaction(['lineItems'], 'readonly');
+    idbTx.onerror = (err) => console.log(err);
+    idbTx.oncomplete = (e) => {
+      transactions = [...getRecords.result.reverse(), ...transactions];
+      console.log(transactions)
+      populateChart();
+      populateTable();
+      populateTotal();
+    }
+    const idbStore = idbTx.objectStore('lineItems');
+    getRecords = idbStore.getAll();
+    getRecords.onerror = (err) => console.log(err)
+  }
+}
+
+// window.addEventListener('online', postRecords);
