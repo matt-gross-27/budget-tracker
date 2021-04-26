@@ -25,13 +25,6 @@ mongoose.connect(MONGODB_URI, {
 // routes
 app.use(require("./routes/api.js"));
 
-// redirect to https:// protocol
-app.get('/', (req, res) => {
-  if (req.protocol !== 'https') {
-    res.redirect('https://' + req.hostname + req.originalUrl);
-  }
-});
-
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
