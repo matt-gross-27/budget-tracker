@@ -1,5 +1,6 @@
 let transactions = [];
 let myChart;
+let localTransactions = [];
 
 fetch("/api/transaction")
   .then(response => {
@@ -7,7 +8,7 @@ fetch("/api/transaction")
   })
 .then(data => {
     // save db data on global variable
-    transactions = data;
+    transactions = [...data, ...localTransactions];
 
     populateTotal();
     populateTable();

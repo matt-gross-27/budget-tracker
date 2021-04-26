@@ -15,13 +15,23 @@ req.onerror = e => {
   console.log(e.target.errorCode);
 };
 
-function storeRecord (record) {
+function storeRecord(record) {
   const idbTransaction = db.transaction(['new_record'], 'readwrite');
   const budgetObjectStore = idbTransaction.objectStore('new_record');
   budgetObjectStore.add(record);
 }
 
-function postRecords () {
+function getRecords() {
+  const idbTransaction = db.transaction(['new_record'], 'readwrite');
+  const budgetObjectStore = idbTransaction.objectStore('new_record');
+  const getRecords = budgetObjectStore.getAll();
+
+  return getRecords.onsuccess = () => {
+    return getRecords.result
+  }
+}
+
+function postRecords() {
   const idbTransaction = db.transaction(['new_record'], 'readwrite');
   const budgetObjectStore = idbTransaction.objectStore('new_record');
   const getRecords = budgetObjectStore.getAll();
@@ -29,7 +39,7 @@ function postRecords () {
   getRecords.onsuccess = () => {
     if (getRecords.result.length > 0) {
       fetch('/api/transaction/bulk', {
-        body: JSON.stringify(getAll.result),
+        body: JSON.stringify(getRecords.result),
         headers: {
           Accept: 'application/json, text/plain, */*',
           'Content-Type': 'application/json'
