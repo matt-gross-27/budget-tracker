@@ -62,7 +62,7 @@ function updateTransactions() {
     idbTx.onerror = (err) => console.log(err);
     idbTx.oncomplete = (e) => {
       transactions = [...getRecords.result.reverse(), ...transactions];
-      console.log(transactions)
+      
       populateChart();
       populateTable();
       populateTotal();
@@ -72,5 +72,3 @@ function updateTransactions() {
     getRecords.onerror = (err) => console.log(err)
   }
 }
-
-// window.addEventListener('online', postRecords);
