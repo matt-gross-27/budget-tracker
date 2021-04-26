@@ -6,6 +6,7 @@ const DATA_CACHE_NAME = 'Transactions-' + CACHE_NAME
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
+  '/manifest.json',
   '/css/styles.css',
   '/icons/icon-72x72.png',
   '/icons/icon-96x96.png',
@@ -16,7 +17,6 @@ const FILES_TO_CACHE = [
   '/icons/icon-384x384.png',
   '/icons/icon-512x512.png',
   '/js/index.js',
-  // '/manifest.json'
 ]
 
 // Install Service Worker
@@ -36,7 +36,6 @@ self.addEventListener('activate', e => {
       return Promise.all(
         keyList.map(key => {
           if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
-            console.log('Removing old cache data', key);
             return caches.delete(key);
           }
         })
