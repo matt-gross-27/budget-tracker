@@ -1,6 +1,11 @@
 let transactions = [];
 let myChart;
-let localTransactions = returnRecords();
+let records = returnRecords();
+let localTransactions = [];
+
+if (localRecords.length > 0 {
+  localTransactions = records
+})
 
 fetch("/api/transaction")
   .then(response => {
