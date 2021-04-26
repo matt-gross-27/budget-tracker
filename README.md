@@ -10,6 +10,8 @@ Budget tracker is a progressive web application for tracking your personal finan
 
 If you travel a lot, then you know how frustrating bad network connection can be. Budget tracker allows you to have access to your ledger offline, and saves your line items to be uploaded to the cloud as soon as you get back to service.
 
+![budget-tracker-screen-shot](/assets/screen-shot.png)
+
 
 ## Table of Contents
   - [Description](#description)
