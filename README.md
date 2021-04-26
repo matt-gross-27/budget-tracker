@@ -17,6 +17,13 @@ THEN the deposits or expenses added while they were offline are added to their t
 
 
 NOTES
+```
+App must
+- include a service worker.
+- include a web manifest.
+- use IndexedDB for offline functionality.
+- be deployed to Heroku.
+```
 
 1. IndexedDB to add offline functionality
   - add idb.js file to the public/js/
@@ -47,4 +54,3 @@ AFTER ONE AND TWO...
 
 4. Deployment to Heroku Using MongoDB Atlas
  - See 18.5.5: Deploy to Heroku.
-
