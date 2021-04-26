@@ -21,7 +21,7 @@ function storeRecord(record) {
   budgetObjectStore.add(record);
 }
 
-function getRecords() {
+function returnRecords() {
   const idbTransaction = db.transaction(['new_record'], 'readwrite');
   const budgetObjectStore = idbTransaction.objectStore('new_record');
   const getRecords = budgetObjectStore.getAll();
@@ -50,11 +50,12 @@ function postRecords() {
           if (serverResponse.message) {
             throw new Error(serverResponse);
           }
+          
           const idbTransaction = db.transaction(['new_record'], 'readwrite');
           const budgetObjectStore = idbTransaction.objectStore('new_record');
           budgetObjectStore.clear();
 
-          console.log('uploaded offline transactions')
+          console.log('uploaded offline transactions');
         })
         .catch(err => console.log(err));
     }
